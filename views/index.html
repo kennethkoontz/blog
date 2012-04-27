@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>I have a back bone</title>
+	<head>
+	<link rel="stylesheet" href="static/stylesheets/base.css">
+	<link rel="stylesheet" href="static/stylesheets/skeleton.css">
+	<link rel="stylesheet" href="static/stylesheets/layout.css">
+	<script type="text/javascript" href="static/javascripts/tabs.js"></script>
+	<title>kenneth koontz - blog</title>
 </head>
 <body>
-	<div id="posts-container">
+
+
+	<div class="container" style="padding-top: 60px;">
+		<div >
+			<div id="sidebar" class="four columns sidebar">
+				<sidebar style="position:fixed; width: 160px;">
+					<ul>
+						<li>about</li>
+						<li>foo</li>
+						<li>bar</li>
+					</ul>
+				<div id="recent-articles-container" >
+					<ul>
+						<h4>recent articles</h4>
+						<script id="recent-article-template" type="text/x-handlebars-template">
+							<li><a href="#{{ title }}">{{ title }}</a></li>
+						</script>
+					</ul>
+				</div>
+				</sidebar>
+			</div>
+
+			<div id="posts-container" class="eleven columns offset-by-four">
+				<header>
+					<h1>Kenneth Koontz</h1>
+				<hr class="large">
+				</header>
+				<script id="post-template" type="text/x-handlebars-template">
+					<h3 id="{{ title }}"><a href="/">{{ title }}</a></h3>
+					<p>{{ body }}</p>
+				</script>
+			</div>
+		</div>
+
 	</div>
 
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0.beta2/handlebars.min.js"></script>
 <script	type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.4/underscore-min.js"></script>
 <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js"></script>

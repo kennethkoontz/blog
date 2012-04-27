@@ -15,20 +15,34 @@
             this.render();
         },
         el: '#posts-container',
+        el2: '#recent-articles-container',
         render: function () {
             var self = this;
             var posts = new Posts();
             posts.fetch({
                 success: function(posts) {
+                    var source = $("#post-template").html(),
+                        template = Handlebars.compile(source),
+                        context,
+                        html;
+
+                    var source2 = $("#recent-article-template").html(),
+                        template2 = Handlebars.compile(source2);
                     for (var i in posts.models) {
-                        var html = '<li>' + posts.models[i].attributes.value.title + '</li>'+
-                                   '<li>' + posts.models[i].attributes.value.body + '</li>';
+                        context = {
+                            title: posts.models[i].attributes.value.title,
+                            body: posts.models[i].attributes.value.body
+                        };
+                        html = template(context);
                         $(self.el).append(html);
+                        html2 = template2(context);
+                        $(self.el2).append(html2);
                     }
                 }
             });
         }
     });
+
   
     posts = new Posts;
     postview = new PostView({el: $('#posts-container')});

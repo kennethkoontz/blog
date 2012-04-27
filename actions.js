@@ -21,8 +21,13 @@ var actions = module.exports = {
         var req = http.request(couchOptions, function(res) {
             res.on('data', function(chunk) {
                 data += chunk;
-            }).on('end', function(e) {
-                self.json(JSON.parse(data)['rows']);
+            }).on('end', function() {
+                var o = JSON.parse(data);
+                if (o['error']) {
+                    throw 'db error: ' + o['error'];
+                } else {
+                    self.json(o['rows']);
+                }
             });
         }).on('error', function(e) {
             console.log(e.message);
